@@ -27,9 +27,6 @@ def page_json():
     with open('data.json','w',encoding='utf-8') as d:
         d.write(data_json)
         return render_template('json.html', data_json=data_json)
-    # with open('data.json', 'r', encoding='utf-8') as d:
-    #     data_json=d.read()
-    #     return render_template('json.html', data_json=data_json)
 
 @app.route('/')
 def form():
