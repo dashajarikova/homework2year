@@ -1,0 +1,24 @@
+<html>
+    <head>
+       <meta charset="utf-8">
+       <title>!Социолингвистика!</title>
+    </head>
+ <body>
+
+ <form action="">
+    <p><b>Как вас зовут?</b> <input type="text" name="username" value=""></p>
+    <p><b>Сколько вам лет?</b> <input type="text" name="age" value=""></p>
+    <p><b>В каком городе вы прожили большую часть жизни?</b> <input type="text" name="city" value=""></p>
+    <p><b>Какой ваш родной язык?</b> <input type="text" name="language" value=""></p>
+    <p><b>Как бы вы произнесли слово "Гуглить"?</b></p>
+    <input type="radio" name="stressG" value="stressG1">гУглить<Br>
+    <input type="radio" name="stressG" value="stressG2">гуглИть<Br>
+    <p><b>Как бы вы произнесли слово "Спойлерить"?</b></p>
+    <input type="radio" name="stressS" value="stressS1">спОйлерить<Br>
+    <input type="radio" name="stressS" value="stressS2">спойлерИть<Br>
+    <p><input type="submit"></p>
+ </form>
+
+ </body>
+ </html>
+
