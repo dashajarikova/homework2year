@@ -3,7 +3,6 @@ from flask import render_template, request
 import urllib.request
 import re
 import os
-from bs4 import BeautifulSoup
 
 def mystemAll(w):
     with open('input.txt', 'w', encoding='utf-8') as source1:
