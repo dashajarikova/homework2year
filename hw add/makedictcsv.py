@@ -35,8 +35,8 @@ def crawler():
             #     cl = clearw.split(' ')
             #     cclearw = cl[0]
             #     clearwords.append(cclearw)
-            elif clearw in clearwords:
-                pass
+#             elif clearw in clearwords:
+#                 pass
             else:
                 clearwords.append(clearw)
         # print(clearwords)
