@@ -79,3 +79,9 @@ for user in id_chela:
     if 'city' not in data[0]:
             continue
     cities[user]=data[0]['city']['title']
+
+texts_post=[]
+for item in new_clear_data:
+    texts.append(item['text'])
+with open('text_post.txt', 'w', encoding='utf-8') as source:
+        source.write(str(texts_post))
