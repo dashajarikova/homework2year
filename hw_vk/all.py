@@ -76,4 +76,6 @@ for user in id_chela:
         birthdays[user]=age
     else:
         pass
-    print(birthdays)
+    if 'city' not in data[0]:
+            continue
+    cities[user]=data[0]['city']['title']
