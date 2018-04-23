@@ -1,6 +1,6 @@
 import urllib.request
 import json
-offsets=[0]
+offsets=[0,100,200]
 clear_data=[]
 for off in offsets:
     req = urllib.request.Request(
@@ -60,7 +60,7 @@ plt.show()
 plt.savefig('posts_and_comments.png', format='png', dpi=100)
 
 birthdays={}
-for user in id_chela:
+for user in id_chela[:500]:
     req = urllib.request.Request('https://api.vk.com/method/users.get?user_ids='+str(user)+'&v=5.74&fields=city,bdate&access_token=e710108be710108be710108b35e7723cb5ee710e710108bbdd1de6023989f2a50d061c4')
     response = urllib.request.urlopen(req)
     result = response.read().decode('utf-8')
