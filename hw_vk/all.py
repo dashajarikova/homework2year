@@ -23,9 +23,6 @@ all_texts={}
 post_id=[]
 post_len=[]
 sl_dlin={}
-schet=0
-#num_com=[]
-text_counter=0
 for item in new_clear_data:
     #post_id.append(item['id'])
     post_len=(len(item['text'].split()))
@@ -54,8 +51,6 @@ for item in new_clear_data:
         else:
             mean_len_com=sum(len_text)/len_com
         #print(mean_len_com)
-    schet += 1
-    print(schet)
     sl_dlin[post_len]=mean_len_com
 import matplotlib.pyplot as plt
 plt.bar(sl_dlin.keys(), sl_dlin.values())
@@ -63,3 +58,22 @@ plt.ylabel('Средняя длина комментариев')
 plt.xlabel('Длина поста')
 plt.show()
 plt.savefig('posts_and_comments.png', format='png', dpi=100)
+
+birthdays={}
+for user in id_chela:
+    req = urllib.request.Request('https://api.vk.com/method/users.get?user_ids='+str(user)+'&v=5.74&fields=city,bdate&access_token=e710108be710108be710108b35e7723cb5ee710e710108bbdd1de6023989f2a50d061c4')
+    response = urllib.request.urlopen(req)
+    result = response.read().decode('utf-8')
+    data = json.loads(result)
+    data=data['response']
+    if 'bdate' not in data[0]:
+            continue
+    date=data[0]['bdate']
+    date=date.split('.')
+    if len(date)==3:
+        year=date[2]
+        age=2018-int(year)
+        birthdays[user]=age
+    else:
+        pass
+    print(birthdays)
