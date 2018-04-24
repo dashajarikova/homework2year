@@ -96,3 +96,65 @@ with open('text_post.txt', 'w', encoding='utf-8') as source:
         source.write(str(texts_post))
 with open('text_comm.txt', 'w', encoding='utf-8') as source:
         source.write(str(texts_comm))
+
+t_age={}
+t_city={}
+for el in big_dict:
+    if len(big_dict[el])==3:
+#         print(big_dict[el][2])
+        a=big_dict[el][1]
+        c=big_dict[el][2]
+        if a in t_age:
+            t_age[a].append(big_dict[el][0])
+        else:
+            t_age[a]=[]
+            t_age[a].append(big_dict[el][0])
+        if c in t_city:
+            t_city[c].append(big_dict[el][0])
+        else:
+            t_city[c]=[]
+            t_city[c].append(big_dict[el][0])
+    else:
+        pass
+
+def mean(dic):
+    dict_new={}
+    for el in dic:
+#         print(dic[el])
+        if len(dic[el])>1:
+            mean_len=sum(dic[el])/len(dic[el])
+#             print(mean_len)
+        else:
+            mean_len=dic[el]
+        dict_new[el]=mean_len
+    return dict_new
+
+dict_age = mean(t_age)
+dict_city = mean(t_city)
+for el in dict_age:
+    if type(dict_age[el])==list:
+        for l in dict_age[el]:
+            dict_age[el]=int(l)
+    else:
+        pass
+for el in dict_city:
+    if type(dict_city[el])==list:
+        for l in dict_city[el]:
+            dict_city[el]=int(l)
+    else:
+        pass
+    
+    
+plt.bar(dict_age.keys(), dict_age.values())
+plt.title('Как соотносится возраст и длинна комментария')
+plt.ylabel('Средняя длина комментариев')
+plt.xlabel('Возраст')
+# plt.show()
+plt.savefig('age_and_comments.png', format='png', dpi=100)
+
+plt.bar(dict_age.keys(), dict_age.values())
+plt.title('Как соотносится город и длинна комментария')
+plt.ylabel('Средняя длина комментариев')
+plt.xlabel('Город')
+# plt.show()
+plt.savefig('city_and_comments.png', format='png', dpi=100)
