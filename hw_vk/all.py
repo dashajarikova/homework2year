@@ -24,7 +24,7 @@ post_id=[]
 post_len=[]
 sl_dlin={}
 for item in new_clear_data:
-    #post_id.append(item['id'])
+    post_id.append(item['id'])
     post_len=(len(item['text'].split()))
     for i in post_id:
         text_com=[]
