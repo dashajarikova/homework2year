@@ -59,7 +59,7 @@ plt.xlabel('Длина поста')
 plt.show()
 plt.savefig('posts_and_comments.png', format='png', dpi=100)
 
-birthdays={}
+birthdays={} #запасаные словари
 cities={}
 for user in id_chela:
     req = urllib.request.Request('https://api.vk.com/method/users.get?user_ids='+str(user)+'&v=5.74&fields=city,bdate&access_token=e710108be710108be710108b35e7723cb5ee710e710108bbdd1de6023989f2a50d061c4')
@@ -68,23 +68,31 @@ for user in id_chela:
     data = json.loads(result1)
     try:
         if 'bdate' not in data['response'][0]:
-            continue
+            big_dict[user].append(0)
         date=data['response'][0]['bdate']
         date=date.split('.')
         if len(date)==3:
             year=date[2]
             age=2018-int(year)
             birthdays[user]=age
+            big_dict[user].append(age)
         else:
-            continue
+            big_dict[user].append(0)
         if 'city' not in data['response'][0]:
-                continue
+                big_dict[user].append(0)
         cities[user]=data['response'][0]['city']['title']
+        big_dict[user].append(data['response'][0]['city']['title'])
     except: 
         continue
+# print(big_dict)
 
 texts_post=[]
+texts_comm=[]
 for item in new_clear_data:
-    texts.append(item['text'])
+    texts_post.append(item['text'])
+for i in result:
+    texts_comm.append(i['text'])
 with open('text_post.txt', 'w', encoding='utf-8') as source:
         source.write(str(texts_post))
+with open('text_comm.txt', 'w', encoding='utf-8') as source:
+        source.write(str(texts_comm))
