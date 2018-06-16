@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[1]:
-
 import urllib.request
 import urllib.parse
 import json
@@ -11,9 +6,6 @@ import re
 from collections import Counter
 from flask import Flask
 from flask import url_for, render_template, request, redirect
-
-
-# In[2]:
 
 def detect_id (name):
     name=name.lower()
@@ -38,9 +30,6 @@ def detect_id (name):
         id_group=''
     return(id_group)
 
-
-# In[3]:
-
 def detect_offsets(id_group):
     offsets=[0]
     users = set()
@@ -64,9 +53,6 @@ def detect_offsets(id_group):
                 offsets.append(numb_users//2)
     return(offsets,numb_users)
 
-
-# In[4]:
-
 def users_data(id_group,offsets):
     users=[]
     for off in offsets:
@@ -77,9 +63,6 @@ def users_data(id_group,offsets):
         for user_data in data['response']['items']:
             users.append(user_data)
     return (users)
-
-
-# In[5]:
 
 def users_ages (users):
     users_years=0
@@ -96,9 +79,6 @@ def users_ages (users):
     mid_age=users_years/numb_users_with_age
     mid_age=round(mid_age)
     return(mid_age)
-
-
-# In[6]:
 
 def users_cities(users,numb_users):
     users_city={}
@@ -124,9 +104,6 @@ def users_cities(users,numb_users):
         most_popular_cities=re.sub(',','\n', most_popular_cities)
         result_city='Так как в сообществе более 2000 участников, вот список городов, где проживает большинство участников (в порядке убывания):'+ '\n' + str(most_popular_cities)
     return(result_city)
-
-
-# In[7]:
 
 def posts(id_group):
     texts_posts=[]
@@ -163,9 +140,6 @@ def posts(id_group):
         popular_words_post=popular_words_post[:10]
     return(id_group_new, posts_id, popular_words_post)
 
-
-# In[8]:
-
 def comments(id_group_new, posts_id):
     text_comm=[]
     for i in posts_id:
@@ -198,9 +172,6 @@ def comments(id_group_new, posts_id):
                 popular_words_com.append(i[0])
         popular_words_comm=popular_words_com[:10]
     return (popular_words_comm)
-
-
-# In[ ]:
 
 app = Flask(__name__)
 
@@ -246,9 +217,3 @@ def result():
         
 if __name__ == '__main__':
     app.run(debug=False)
-
-
-# In[ ]:
-
-
-
